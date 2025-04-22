@@ -31,3 +31,15 @@ services:
       KAFKA_CLUSTERS_0_NAME: local
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
       KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nest-app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - kafka
+    environment:
+      - KAFKA_BROKERS=kafka:29092
