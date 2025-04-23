@@ -27,11 +27,7 @@ export class PostConsumer {
         }
     }
 
-    // DLQ 토픽 수동 구성
-    /*
-        docker exec -it kafka \
-        kafka-topics --bootstrap-server localhost:9092 --create --topic post.created.dlq --partitions 1 --replication-factor 1
-    */
+    // docker-commands.txt DLQ 토픽 수동 구성 필요
     @MessagePattern('post.created.dlq')
     handlePostDlq(@Payload() data: any) {
         console.warn('📦 DLQ 메시지 수신됨:', data);

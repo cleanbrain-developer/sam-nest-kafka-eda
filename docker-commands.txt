@@ -1,0 +1,6 @@
+# DLQ 토픽 수동 구성
+docker exec -it kafka \
+kafka-topics --bootstrap-server localhost:9092 --create --topic post.created.dlq --partitions 1 --replication-factor 1
+
+# Prisma Migrate Dev
+docker exec -it nest-app npx prisma migrate dev --name init

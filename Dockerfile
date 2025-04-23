@@ -6,11 +6,14 @@ WORKDIR /app
 
 # 패키지 복사 및 설치
 COPY package*.json ./
+COPY prisma ./prisma
 RUN yarn config set strict-ssl false
 RUN yarn install
+RUN yarn prisma generate
 
 # 소스 복사
 COPY . .
+RUN yarn prisma generate
 
 # 앱 빌드
 RUN yarn build
